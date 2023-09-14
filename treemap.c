@@ -46,33 +46,38 @@ TreeMap *createTreeMap(int (*lower_than)(void *key1, void *key2)) {
 }
 
 void insertTreeMap(TreeMap *tree, void *key, void *value) {
-  TreeNode* aux = tree->root;
-  TreeNode* parent = NULL;
-  TreeNode* new=createTreeNode(key, value);
+  TreeNode *aux = tree->root;
+  TreeNode *parent = NULL;
+  TreeNode *new = createTreeNode(key, value);
 
-  while(aux!=NULL){
-    parent=aux;
-    if(tree->lower_than(key, aux->pair->key)){
-      aux=aux->left;
-    }else if (tree->lower_than(aux->pair->key, key)){
-      aux=aux->right;
-    }else {return;}
+  while (aux != NULL) {
+    parent = aux;
+    if (tree->lower_than(key, aux->pair->key)) {
+      aux = aux->left;
+    } else if (tree->lower_than(aux->pair->key, key)) {
+      aux = aux->right;
+    } else {
+      return;
+    }
   }
-  if(parent==NULL){
-    tree->root=new;
-    tree->current=new;
-  }else if (tree->lower_than(new->pair->key,parent->pair->key)){
-    new->parent = parent;
-    parent->left=new;
+  if (parent == NULL) {
+    tree->root = new;
     tree->current = new;
-  }else{
+  } else if (tree->lower_than(new->pair->key, parent->pair->key)) {
     new->parent = parent;
-    parent->right =new;
+    parent->left = new;
+    tree->current = new;
+  } else {
+    new->parent = parent;
+    parent->right = new;
     tree->current = new;
   }
 }
 
-TreeNode *minimum(TreeNode *x) { return NULL; }
+TreeNode *minimum(TreeNode *x) {
+  while(x->left){x=x->left;}
+  return x;
+}
 
 void removeNode(TreeMap *tree, TreeNode *node) {}
 
