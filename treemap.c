@@ -151,6 +151,9 @@ Pair *searchTreeMap(TreeMap *tree, void *key) {
 
 Pair *upperBound(TreeMap *tree, void *key) { return NULL; }
 
-Pair *firstTreeMap(TreeMap *tree) { return NULL; }
+Pair *firstTreeMap(TreeMap *tree) {
+  TreeNode *first = minimum(tree->root);
+  return first->pair;
+}
 
 Pair *nextTreeMap(TreeMap *tree) { return NULL; }
