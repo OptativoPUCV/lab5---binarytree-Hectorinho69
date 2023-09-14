@@ -28,8 +28,8 @@ int is_equal(TreeMap *tree, void *key1, void *key2) {
 TreeNode *createTreeNode(void *key, void *value) {
   //crea dato tipo nodo y se le asigna memoria
   TreeNode *new = (TreeNode *)malloc(sizeof(TreeNode));
-  //toma caso de error donde el nuevo nodo no se 
-  
+  //se asignan los valores al pair del nuevo nodo
+  //se inicializan los punteros
   new->pair = (Pair *)malloc(sizeof(Pair));
   new->pair->key = key;
   new->pair->value = value;
